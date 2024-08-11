@@ -1,0 +1,118 @@
+buildscript {
+    ext {
+        serenityVersion = '4.1.14'
+        lombokVersion = '1.18.34'
+    }
+
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:${serenityVersion}"
+        classpath "net.serenity-bdd:serenity-single-page-report:${serenityVersion}"
+    }
+}
+
+plugins {
+    id "net.serenity-bdd.serenity-gradle-plugin" version "${serenityVersion}"
+    id "java"
+    id "idea"
+}
+
+java{
+    sourceCompatibility='21'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}",
+            "net.serenity-bdd:serenity-cucumber:${serenityVersion}",
+            "net.serenity-bdd:serenity-junit:${serenityVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}",
+            "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}",
+            "net.serenity-bdd:serenity-ensure:${serenityVersion}",
+            'io.rest-assured:json-schema-validator:5.4.0',
+            "org.projectlombok:lombok:${lombokVersion}",
+            'org.slf4j:slf4j-reload4j:2.0.13',
+            'org.apache.logging.log4j:log4j-core:2.23.1',
+            'org.json:json:20240303',
+            'org.antlr:ST4:4.3.4',
+            'org.apache.poi:poi-ooxml:5.3.0',
+            'org.mongodb:mongodb-driver-sync:5.1.1',
+            'org.springframework:spring-jdbc:6.1.10'
+
+    testImplementation 'com.intuit.karate:karate-junit4:1.4.0.RC3',
+            'com.intuit.karate:karate-netty:0.9.3.RC1',
+            'com.intuit.karate:karate-apache:0.9.6'
+
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.register('backupFeatures') {
+    dependsOn(clearReports)
+    doLast {
+        def pathSerenity = file('target/site/serenity')
+        if (!pathSerenity.exists()) {
+            pathSerenity.mkdirs()
+        }
+
+        copy {
+            from "src/test/resources/features"
+            into "build/originalFeatures"
+        }
+    }
+}
+
+tasks.register('copyAssets') {
+    onlyIf {
+        new File('target/isManualTests').exists()
+    }
+    doLast {
+        copy {
+            from "src/test/resources/assets"
+            into "target/site/serenity/assets"
+        }
+        delete "target/isManualTests"
+    }
+}
+
+tasks.register('restoreFeatures') {
+    dependsOn(copyAssets)
+    doLast {
+        copy {
+            from "build/originalFeatures"
+            into "src/test/resources/features"
+        }
+        delete "build/originalFeatures"
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+compileJava.dependsOn(backupFeatures)
+
+test {
+    systemProperties System.getProperties()
+    systemProperty "file.encoding", "utf-8"
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    systemProperty "webdriver.driver", System.getenv("TIPO_DRIVER")
+    maxParallelForks = 8
+    //for karate
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    outputs.upToDateWhen { false }
+}
+
+serenity {
+    requirementsDir = "src/test/resources/features"
+    reports = ["single-page-html"]
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate, reports, restoreFeatures)
