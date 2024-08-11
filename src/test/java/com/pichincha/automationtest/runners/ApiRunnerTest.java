@@ -32,7 +32,7 @@ public class ApiRunnerTest {
         ControlExecution.featuresSegmentation();
 
         Results results = Runner.path("src/test/resources/features/")
-                .tags("@SignUp").outputCucumberJson(true).parallel(5);
+                .tags("@ApiFlows").outputCucumberJson(true).parallel(5);
 
         String karateOutputPath = "build/karate-reports";
         generateReport(karateOutputPath);

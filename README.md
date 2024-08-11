@@ -1,42 +1,51 @@
-# 🦾  Reto Devsu
+# 🦾  Reto Devsu API y Web
 
 
 ### **Automatizado Por:**
 ## Jhonatan David Caraballo Ortiz
 
-#### Arquetipo de pruebas automatizadas usando SerenityBDD con Screenplay
-#### Herramientas y Complementos
+#### Automated Testing Archetype Using SerenityBDD with Screenplay
+#### ools and Add-ons
 
 |                                                                               **IntelliJ**                                                                                |**Java**|**Gradle**|
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------:| :----: | :----:  |
 | [<img width="50" height="50" src="https://cdn.iconscout.com/icon/free/png-128/intellij-idea-569199.png">](https://www.jetbrains.com/es-es/idea/download/#section=windows) | [<img height="60" src="https://www.oracle.com/a/ocom/img/cb71-java-logo.png">](https://www.oracle.com/java/technologies/downloads/) | [<img height="50" src="https://gradle.org/images/gradle-knowledge-graph-logo.png?20170228">](https://gradle.org/releases/) |
 
-> **NOTA**:
+> **In this challenge, an integration of API and Web flows has been done using Serenity and Karate to have the flows integrated into a single project.**
 
-> * Para ejecutar el proyecto se recomienda minimo las siguientes versiones: 
+
+> **A continuación se encuentran 3 flujos automatizados distribuidos de la siguiente manera**
+> * 1  Web flow for purchasing two devices on the Demoblaze page automated with SerenityBDD, Java 21, Gradle 8.7
+> * 2  Flows for Successful Registration and Failed Registration automated with Karate
+> * 2  Flows for Successful Login and Failed Login automated with Karate
+
+> **NOTE**:
+> > * There are two Runners, one for Web and another for APIs; execute according to the requirement, taking into account the tags on line 35 for API and line 26 for Web.
+
+> * To run the project, the following minimum versions are recommended:
 >   * IntelliJ Community Edition 2023.3
 >   * Java JDK 21
 >   * Gradle 8.7
-> * Una vez obtenido IntelliJ es necesario instalar los plugins de Gherkin y Cucumber for Java. (
+> * Once IntelliJ is obtained, it is necessary to install the Gherkin and Cucumber for Java plugins. (
     *[Guia de instalación plugins en intellij](https://www.jetbrains.com/help/idea/managing-plugins.html)*)
 
 ## Ejecución local
 
-0. Clonar el proyecto
+0. Clone project
 
 ```bash
   git clone https://github.com/jdcaraballo/TestDevsu.git 
 ```
 
-Para correr el proyecto de manera local se debe realizar los siguientes pasos:
+To run the project locally, the following steps should be followed:
 
-1. Definir el tag de los tipos de tests que se van a ejecutar, esto lo hacemos en el archivo WebRunnerTest.
+1. Define the tag for the types of tests to be executed; this is done in the WebRunnerTest file.
 
 ```
 tags = "not @karate and not @ManualTest and not @Mobiletest"
 ```
 
-2. Definir el driver a usarse en serenity.properties.
+2. Define the driver to be used in the serenity.properties file.
 
 ```
 #====>CONFIG DRIVER
@@ -47,13 +56,13 @@ webdriver.driver=chrome
 
 ### Comandos SerenityBDD
 
-Para ejecutar todos los escenarios por linea de comandos
+To execute all scenarios from the command line:
 
 ```bash
   ./gradlew clean test --tests "runners.com.automationtest.WebRunnerTest"
 ```
 
-Para ejecutar escenarios que contengan un tag especifico
+To run scenarios that contain a specific tag:
 
 ```bash
   ./gradlew clean test --tests -Dcucumber.filter.tags="@test" runners.com.automationtest.WebRunnerTest
@@ -66,17 +75,17 @@ Para ejecutar los escenarios enviando variables de ambiente
 ```
 
 
-## Construido con
+## Built with
+* BDD - Development Strategy
+* Screenplay - Design Pattern
+*  Karate
+*  Gradle - Dependency Manager
+*  Cucumber - Framework for Automating BDD Tests
+*  Serenity BDD - Open-source Library for Report Generation
 
-* BDD - Estrategia de desarrollo
-* Screenplay - Patrón de diseño
-* Gradle - Manejador de dependencias
-* Cucumber - Framework para automatizar pruebas BDD
-* Serenity BDD - Biblioteca de código abierto para la generación de reportes
-* Gherkin - Lenguaje Business Readable DSL (Lenguaje especifico de dominio legible por el negocio)
 
-## Ejecución compra de dos productos en Demoblaze
+## xecution of Purchase of Two Products on Demoblaze
 
-1. Para esta prueba se quiere hacer un flujo automatizado la la compra de dos dispositivos tecnológicos tipo celular
-2. se han aplicado los principios SOLID para el mayor entendimiento y desarrollo de la aautomatizión.
-3.
+1. This test aims to automate the purchase flow of two cell phone devices.
+2. SOLID principles have been applied to enhance understanding and development of the automation.
+
