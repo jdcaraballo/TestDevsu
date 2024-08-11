@@ -19,14 +19,14 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class FindSecondProduct implements Task {
 
-    private final String descriptionProductDos;
+    private final String descriptionSecondProduct;
 
-    public FindSecondProduct(String descriptionProductDos) {
-        this.descriptionProductDos = descriptionProductDos;
+    public FindSecondProduct(String descriptionSecondProduct) {
+        this.descriptionSecondProduct = descriptionSecondProduct;
     }
 
-    public static FindSecondProduct whitDescription(String descriptionProductDos) {
-        return instrumented(FindSecondProduct.class, descriptionProductDos);
+    public static FindSecondProduct whitDescription(String descriptionSecondProduct) {
+        return instrumented(FindSecondProduct.class, descriptionSecondProduct);
     }
 
     @Step("{0} busca el segundo producto ")
@@ -36,8 +36,8 @@ public class FindSecondProduct implements Task {
         actor.attemptsTo(
                 Click.on(PageProductPurchase.BUTTOM_HOME),
                 Click.on(SELECT_TYPE_PRODUCT),
-                WaitUntil.the(SELECTED_PRODUCT.of(descriptionProductDos), isVisible()),
-                Click.on(SELECTED_PRODUCT.of(descriptionProductDos)),
+                WaitUntil.the(SELECTED_PRODUCT.of(descriptionSecondProduct), isVisible()),
+                Click.on(SELECTED_PRODUCT.of(descriptionSecondProduct)),
                 Click.on(PageProductPurchase.BUTTON_ADD_TO_CART)
         );
     }

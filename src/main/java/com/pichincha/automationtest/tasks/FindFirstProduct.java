@@ -14,14 +14,14 @@ import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisi
 
 public class FindFirstProduct implements Task {
 
-    private final String descriptionProductUno;
+    private final String descriptionFirstProduct;
 
-    public FindFirstProduct(String descriptionProductUno) {
-        this.descriptionProductUno = descriptionProductUno;
+    public FindFirstProduct(String descriptionFirstProduct) {
+        this.descriptionFirstProduct = descriptionFirstProduct;
     }
 
-    public static FindFirstProduct whitDescription(String descriptionProductUno) {
-        return instrumented(FindFirstProduct.class, descriptionProductUno);
+    public static FindFirstProduct whitDescription(String descriptionFirstProduct) {
+        return instrumented(FindFirstProduct.class, descriptionFirstProduct);
     }
 
     @Step("{0} busca el primer producto")
@@ -29,8 +29,8 @@ public class FindFirstProduct implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Click.on(SELECT_TYPE_PRODUCT),
-                WaitUntil.the(SELECTED_PRODUCT.of(descriptionProductUno), isVisible()),
-                Click.on(SELECTED_PRODUCT.of(descriptionProductUno)),
+                WaitUntil.the(SELECTED_PRODUCT.of(descriptionFirstProduct), isVisible()),
+                Click.on(SELECTED_PRODUCT.of(descriptionFirstProduct)),
                 Click.on(PageProductPurchase.BUTTON_ADD_TO_CART)
         );
     }

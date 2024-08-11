@@ -5,7 +5,7 @@
 *.iws
 
 ### Maven template
-target/
+#target/
 .DS_Store
 .gradle
 build

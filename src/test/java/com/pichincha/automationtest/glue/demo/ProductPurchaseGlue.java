@@ -23,26 +23,25 @@ import static net.serenitybdd.screenplay.questions.WebElementQuestion.the;
 @Slf4j
 public class ProductPurchaseGlue {
 
-
-    @Given("que el {actor} ingresa a la pagina de demoblaze para seleccionar el {string} y {string}")
-    public void queElActorIngresaALaPaginaDeDemoblazeParaSeleccionarEl(Actor actor, String descriptionProductUno, String descriptionProductDos) {
+    @Given("that {actor} goes to demoblaze page to select the {string} and {string}")
+    public void theActorGoesToDemoblazePageToSelectTwoProducts(Actor actor, String descriptionFirstProduct, String descriptionSecondProduct) {
         givenThat(actor).attemptsTo(
                 HomePage.inPage(),
-                FindFirstProduct.whitDescription(descriptionProductUno),
-                FindSecondProduct.whitDescription(descriptionProductDos),
+                FindFirstProduct.whitDescription(descriptionFirstProduct),
+                FindSecondProduct.whitDescription(descriptionSecondProduct),
                 ProductPurchase.toCart()
         );
     }
 
-    @When("el decide hacer la compra ingresa sus datos personales")
-    public void ySeIdentificaConLosDatosDeCompraY(List<List<String>> data) {
+    @When("he wants to make a purchase enter his personal data")
+    public void heWantsToMakePurchaseEnterHisPersonalData(List<List<String>> data) {
         when(theActorInTheSpotlight()).wasAbleTo(
                 RegisterCustomer.withInformation(new ModelProductPurchase(data))
         );
     }
 
-    @Then("el realiza la compra del producto exitosamente")
-    public void completaLaCompraExitosamenteDelProducto() {
+    @Then("he can see Successesful purchase message")
+    public void heCanSeeSuccessesfulPurchaseMessage() {
         then(theActorInTheSpotlight()).should(
                 seeThat(the(LABEL_SUCCESSFULL_PURCHASE), isPresent())
         );

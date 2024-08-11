@@ -1,16 +1,16 @@
 @RetoDevsu
-Feature:  Reto Web Devsu, se quiere comprar dos productos
+Feature:  Challenge Web Devsu, to buy technologic devices
 
   @id:1 @ProductPurchase
-  Scenario Outline: Compra de productos tecnologicos.
-  Para realizar una compra exitosa de un producto  como cliente sin realizar login en la aplicación  necesito ser capaz de realizar y verificar la compra
-    Given que el Jhonatan David ingresa a la pagina de demoblaze para seleccionar el "<productoUno>" y "<productoDos>"
-    When el decide hacer la compra ingresa sus datos personales
+  Scenario Outline: Purchase two devices.
+    Do successful purchase of two devices and fill required data
+    Given that Jhonatan David goes to demoblaze page to select the "<firstProduct>" and "<secondProduct>"
+    When he wants to make a purchase enter his personal data
       | name   | country   | city   | card   | month   | year   |
       | <name> | <country> | <city> | <card> | <month> | <year> |
-    Then el realiza la compra del producto exitosamente
+    Then he can see Successesful purchase message
     Examples:
-      | @externaldata@demo/WebDataCompraTelefono.xlsx..compra |
+      | @externaldata@demo/WebDataToPurchase.xlsx..purchase |
 
   
 
