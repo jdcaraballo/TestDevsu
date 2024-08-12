@@ -7,6 +7,5 @@
 ### Maven template
 .DS_Store
 .gradle
-build
 bin
 .scannerwork
