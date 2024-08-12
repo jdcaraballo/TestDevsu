@@ -20,12 +20,16 @@
 > * 2  Flows for Successful Login and Failed Login automated with Karate
 
 > **NOTE**:
+> 
+> * to look over karate report open the build package and summary report
+> * To look over Web report open target serenity folder
+
 > > * There are two Runners, one for Web and another for APIs; execute according to the requirement, taking into account the tags on line 35 for API and line 26 for Web.
 
 > * To run the project, the following minimum versions are recommended:
 >   * IntelliJ Community Edition 2023.3
->   * Java JDK 21
->   * Gradle 8.7
+>   * Java JDK 17 onward
+>   * Gradle 7.6 onward
 > * Once IntelliJ is obtained, it is necessary to install the Gherkin and Cucumber for Java plugins. (
     *[Guia de instalación plugins en intellij](https://www.jetbrains.com/help/idea/managing-plugins.html)*)
 

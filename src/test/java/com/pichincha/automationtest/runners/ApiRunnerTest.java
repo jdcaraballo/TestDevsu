@@ -33,6 +33,7 @@ public class ApiRunnerTest {
 
         Results results = Runner.path("src/test/resources/features/")
                 .tags("@ApiFlows").outputCucumberJson(true).parallel(5);
+               // .tags("@SignUpSuccessful").outputCucumberJson(true).parallel(5);
 
         String karateOutputPath = "build/karate-reports";
         generateReport(karateOutputPath);

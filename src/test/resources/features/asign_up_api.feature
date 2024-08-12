@@ -10,9 +10,9 @@ Feature: Create account
     * header Accept = '*/*'
     Given url 'https://api.demoblaze.com/signup'
     And def user = read('classpath:../data/demo/ApiSignUp.json')
+    And request user
     * print user
     When method POST
-    * print response
     Then status 200
 
 

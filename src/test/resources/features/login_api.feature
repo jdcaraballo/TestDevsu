@@ -9,7 +9,6 @@ Feature: Login
     * header Content-Type = 'application/json'
     * header Accept = '*/*'
     Given url 'https://api.demoblaze.com/login'
-#    And def user = read('classpath:../data/demo/ApiSignUp.json')
     And def user = read('classpath:../data/demo/ApiLoginSuccessful.json')
     And request user
     * print user

@@ -1,0 +1,74 @@
+--------------------------------------------------------Technical Conclusions E2E----------------------------------------
+
+I chose Serenity Screenplay as the framework for E2E automation for the following reasons:
+
+Maintenance and Scalability:
+
+Serenity Screenplay promotes an actor-oriented approach, focusing on tasks and goals, which facilitates writing clear, reusable, and easy-to-maintain tests. This allows the scripts to be more scalable as the project grows.
+Readability and Documentation:
+
+Serenity offers excellent integration with JUnit, generating detailed and readable reports that document each step of the test flow. This improves the understanding of the test status for all team members, including those without deep technical knowledge.
+Abstraction of Technical Complexity:
+
+By using the Screenplay pattern, a clear separation is achieved between what actors do and how they do it. This allows for focusing on the system's behavior rather than the technical details of the implementation.
+Compatibility and Flexibility:
+
+Serenity Screenplay is compatible with multiple tools and technologies, making it easy to integrate with other systems and expand automation capabilities in the future.
+
+
+--------------------------------------------------------Functional Conclusions----------------------------------------
+
+CASE: E2E Automation of the purchase flow on Demoblaze
+
+Execution Summary:
+
+The automation of the purchase flow on the https://www.demoblaze.com/ website was successfully completed using the Serenity framework with the Screenplay design pattern. The flow included adding two products to the cart, viewing the cart, completing the purchase form, and finalizing the purchase with its respective validation.
+Findings:
+
+The Demoblaze website responded correctly to all automated actions, demonstrating that the purchase flow is stable and functional under test conditions.
+No critical errors were found during the execution of the automated flow.
+Page load times were adequate, and there were no significant delays that affected the user experience.
+All interactive elements (buttons, form fields, etc.) worked as expected.
+Suggested Improvements:
+
+Although the purchase flow is functional, it is recommended to consider optimizing the site's response time under higher load conditions, which was not tested in this exercise.
+It is suggested to implement clearer confirmation messages after the purchase is completed to enhance the user experience.
+Conclusion:
+
+The automation of the purchase flow on Demoblaze has been successful, meeting the requirements established in the exercise. The results indicate that the site is reliable for making purchases, with adequate performance and no functional errors in the tested flow.
+The public repository with all generated files, including scripts, reports, and other materials, is available at the following URL: [insert the Github repository URL].
+-------------------------------- Technical and Functional Conclusions of the Automated Testing Exercise (APIs) ------------------------
+
+1. Technical Conclusions****
+
+a. Tools Used:
+The tests were implemented using Serenity Screenplay in combination with RestAssured. Serenity Screenplay provided a fluid and modular approach to writing acceptance tests, while RestAssured effectively handled HTTP requests and responses for validating REST services.
+The combination of these tools allowed the creation of a robust testing framework, with clear separation of responsibilities, facilitating the scalability and maintenance of the code.
+
+b. Implementation:
+All required scenarios (registration and login) were successfully automated, with high reuse of components, optimizing the efficiency of the test suite.
+The implementation with Serenity Screenplay provided detailed and visual reports that are useful for analysis and communication of results with non-technical stakeholders.
+RestAssured was key in validating API responses, allowing precise verification of status codes, response bodies, and response times.
+
+c. Technical Challenges:
+A notable challenge was managing test data, especially to avoid conflicts when creating duplicate users. This was resolved by using randomization strategies for usernames.
+It was necessary to properly manage dependencies between tests to ensure that data generated in one test was available for subsequent tests, using an actor-based approach with Serenity Screenplay.
+
+2. Functional Conclusions
+
+a. New User Registration:
+The registration service worked correctly in creating new users, validating the system's ability to handle new registrations efficiently.
+It was confirmed that the system correctly handles attempts to create a user with an existing name, returning an appropriate error, which is crucial for maintaining database integrity.
+
+b. Login:
+The tests verified that the system allows users to log in correctly with valid credentials, ensuring that the authentication process works as expected.
+The system correctly handled login attempts with incorrect credentials, providing appropriate error messages, which is essential for user security.
+
+c. Recommendations:
+It is recommended to improve error messages to make them more descriptive and useful for the end user, especially in cases like duplicate user registration attempts or authentication failures.
+Implement additional validations to ensure that more complex inputs (such as usernames with special characters) are handled correctly, which will improve the robustness and security of the system.
+
+d. Documentation and Usage:
+A README.txt file was generated with detailed instructions on how to execute the automated tests, facilitating the replication of the exercise in other environments.
+The test results are accessible and understandable thanks to the reports generated by Serenity, which is valuable for development and QA teams in continuous analysis and improvement.
+
