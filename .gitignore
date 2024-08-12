@@ -5,10 +5,8 @@
 *.iws
 
 ### Maven template
-#target/
 .DS_Store
 .gradle
 build
 bin
 .scannerwork
-#src/test/resources/properties/db.properties
